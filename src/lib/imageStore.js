@@ -10,7 +10,7 @@ const useImageStore = create((set, get) => ({
 
   currentPage: 1,
   totalPages: 1,
-  
+
   setCurrentPage: (page) => set({ currentPage: page }),
 
   fetchImages: async () => {
@@ -18,7 +18,7 @@ const useImageStore = create((set, get) => ({
     set({ loading: true, error: null })
     try {
       const { data } = await api.get(`/gallery?page=${currentPage}&limit=10`)
-      
+
       const payload = data.data || data // Support if API wraps in { data: ... }
       const flatImages = []
       if (payload && typeof payload === 'object') {
@@ -30,9 +30,9 @@ const useImageStore = create((set, get) => ({
           })
         })
       }
-      
-      set({ 
-        images: flatImages, 
+
+      set({
+        images: flatImages,
         loading: false,
         totalPages: data.totalPages || data.total_pages || 1 // Support if API returns total pages
       })

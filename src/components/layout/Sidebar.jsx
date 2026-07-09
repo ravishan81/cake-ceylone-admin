@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, Images, ShoppingBag, CakeSlice, Menu, X, Star } from 'lucide-react'
+import { LayoutDashboard, Images, UploadCloud, ShoppingBag, CakeSlice, Menu, X, Star } from 'lucide-react'
 import { useState } from 'react'
 
 const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/images', icon: Images, label: 'Image Management' },
+  { to: '/upload', icon: UploadCloud, label: 'Upload Image' },
   { to: '/orders', icon: ShoppingBag, label: 'Order Management' },
   { to: '/reviews', icon: Star, label: 'Client Reviews' },
 ]
