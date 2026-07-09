@@ -23,7 +23,7 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/images" element={<ImageManagement />} />
           <Route path="/upload" element={<ImageUpload />} />
-          <Route path="/orders" element={<OrderManagement />} />
+          {/* <Route path="/orders" element={<OrderManagement />} /> */}
           <Route path="/reviews" element={<ReviewManagement />} />
         </Route>
       </Routes>
