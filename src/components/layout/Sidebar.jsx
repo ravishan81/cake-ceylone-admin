@@ -6,7 +6,7 @@ const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/images', icon: Images, label: 'Image Management' },
   { to: '/upload', icon: UploadCloud, label: 'Upload Image' },
-  { to: '/orders', icon: ShoppingBag, label: 'Order Management' },
+  // { to: '/orders', icon: ShoppingBag, label: 'Order Management' },
   { to: '/reviews', icon: Star, label: 'Client Reviews' },
 ]
 
@@ -83,7 +83,7 @@ export default function Sidebar() {
             </div>
             <div>
               <p className="text-slate-200 text-xs font-medium">Admin</p>
-              <p className="text-slate-500 text-xs">admin@cakesite.com</p>
+              {/* <p className="text-slate-500 text-xs">admin@cakesite.com</p> */}
             </div>
           </div>
         </div>

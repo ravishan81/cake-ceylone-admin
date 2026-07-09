@@ -8,8 +8,6 @@ export default function StatCard({ title, value, icon: Icon, trend, trendValue, 
       id={id}
       className="relative overflow-hidden rounded-2xl bg-[#141420] border border-white/5 p-5 group hover:border-white/10 transition-all duration-300"
     >
-      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${gradient} blur-3xl scale-150`} />
-
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-4">
           <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${gradient} shadow-lg`}>

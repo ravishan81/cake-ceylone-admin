@@ -1,13 +1,14 @@
+import { useState, useEffect } from 'react'
 import { DollarSign, ShoppingBag, Images, TrendingUp } from 'lucide-react'
 import StatCard from '../components/dashboard/StatCard'
 import SalesChart from '../components/dashboard/SalesChart'
-import RecentOrders from '../components/dashboard/RecentOrders'
+// import RecentOrders from '../components/dashboard/RecentOrders'
 
-const stats = [
+const BASE_STATS = [
   {
     id: 'stat-revenue',
     title: 'Total Revenue',
-    value: '$84,200',
+    value: '0',
     icon: DollarSign,
     trend: 'up',
     trendValue: 12.4,
@@ -16,7 +17,7 @@ const stats = [
   {
     id: 'stat-orders',
     title: 'Total Orders',
-    value: '1,238',
+    value: '0',
     icon: ShoppingBag,
     trend: 'up',
     trendValue: 8.1,
@@ -25,7 +26,7 @@ const stats = [
   {
     id: 'stat-images',
     title: 'Active Images',
-    value: '56',
+    value: '…',
     icon: Images,
     trend: 'up',
     trendValue: 3.5,
@@ -34,7 +35,7 @@ const stats = [
   {
     id: 'stat-growth',
     title: 'Monthly Growth',
-    value: '+18.3%',
+    value: '0%',
     icon: TrendingUp,
     trend: 'up',
     trendValue: 4.2,
@@ -43,6 +44,39 @@ const stats = [
 ]
 
 export default function Dashboard() {
+  const [stats, setStats] = useState(BASE_STATS)
+
+  useEffect(() => {
+    fetch('https://cake-backend.cakeceylon.workers.dev/gallery')
+      .then((res) => res.json())
+      .then((data) => {
+        const count =
+          data?.pagination?.total ??
+          (data?.data
+            ? Object.values(data.data).reduce(
+              (acc, subCats) =>
+                acc +
+                Object.values(subCats).reduce((a, imgs) => a + (Array.isArray(imgs) ? imgs.length : 0), 0),
+              0
+            )
+            : Array.isArray(data)
+              ? data.length
+              : 0)
+        setStats((prev) =>
+          prev.map((s) =>
+            s.id === 'stat-images' ? { ...s, value: String(count) } : s
+          )
+        )
+      })
+      .catch(() => {
+        setStats((prev) =>
+          prev.map((s) =>
+            s.id === 'stat-images' ? { ...s, value: 'N/A' } : s
+          )
+        )
+      })
+  }, [])
+
   return (
     <div className="space-y-6">
       <div>
@@ -58,7 +92,7 @@ export default function Dashboard() {
 
       <SalesChart />
 
-      <RecentOrders />
+      {/* <RecentOrders /> */}
     </div>
   )
 }
