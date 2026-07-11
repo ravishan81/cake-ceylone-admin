@@ -19,7 +19,7 @@ const useImageStore = create((set, get) => ({
     try {
       const { data } = await api.get(`/gallery?page=${currentPage}&limit=10`)
 
-      const payload = data.data || data // Support if API wraps in { data: ... }
+      const payload = data.data || data
       const flatImages = []
       if (payload && typeof payload === 'object') {
         Object.values(payload).forEach((subcategories) => {
@@ -34,7 +34,7 @@ const useImageStore = create((set, get) => ({
       set({
         images: flatImages,
         loading: false,
-        totalPages: data.pagination?.totalPages || data.totalPages || data.total_pages || 1
+        totalPages: data.pagination?.totalPages || data.pagination?.total_pages || payload?.pagination?.totalPages || payload?.pagination?.total_pages || data.totalPages || data.total_pages || 1
       })
     } catch {
       set({ error: 'Failed to load images.', loading: false })
