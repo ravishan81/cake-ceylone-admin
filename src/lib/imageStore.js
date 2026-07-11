@@ -34,7 +34,7 @@ const useImageStore = create((set, get) => ({
       set({
         images: flatImages,
         loading: false,
-        totalPages: data.totalPages || data.total_pages || 1 // Support if API returns total pages
+        totalPages: data.pagination?.totalPages || data.totalPages || data.total_pages || 1
       })
     } catch {
       set({ error: 'Failed to load images.', loading: false })
