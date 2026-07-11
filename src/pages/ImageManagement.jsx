@@ -33,7 +33,7 @@ export default function ImageManagement() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-slate-100 text-2xl font-bold">Image Management</h1>
+          <h1 className="text-slate-100 text-2xl font-bold">Gallery Management</h1>
           <p className="text-slate-500 text-sm mt-1">
             {loading ? 'Loading…' : `${images.length} image${images.length !== 1 ? 's' : ''} total`}
           </p>
